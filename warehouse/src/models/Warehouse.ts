@@ -128,6 +128,7 @@ export class Warehouse {
   );
   
   const fine = (this.settings.exportAmount - exported) * 10;
+  const profit = value - fine; // Рассчитываем итоговую прибыль
   
   this.salesHistory.push({
     day: this.day,
@@ -135,11 +136,11 @@ export class Warehouse {
     imported: this.settings.importAmount,
     exported,
     total: value,
-    fine
+    fine,
+    profit // Добавляем поле profit
   });
   
-
-  this.money += value - fine; 
+  this.money += profit; 
 }
 
   public reset(): void {
